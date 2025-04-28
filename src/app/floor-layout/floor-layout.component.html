@@ -1,0 +1,105 @@
+<div class="container">
+  <div *ngIf="isLoading" class="loading-container">
+    <div class="spinner"></div>
+    <p>Loading floor plan...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <div class="floor-view" *ngIf="!isLoading && !errorMessage">
+    <div class="display">
+      <div class="room-list">
+        <h3>Rooms</h3>
+        <ul>
+          <li
+            *ngFor="let room of rooms"
+            [class.selected]="selectedRoom?.id === room.id"
+            (click)="selectRoom(room.id)"
+          >
+            <div
+              class="status-indicator"
+              [style.background-color]="statusColors[room.status]"
+            ></div>
+            <span>Room {{ room.id | roomNumber }}</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="svg-container">
+        <div [innerHTML]="htmlContent"></div>
+      </div>
+    </div>
+
+    <div
+      class="modal-backdrop"
+      *ngIf="selectedRoom"
+      (click)="closeRoomDetails()"
+    ></div>
+
+    <div class="room-details-modal" *ngIf="selectedRoom">
+      <div class="room-details" (click)="$event.stopPropagation()">
+        <div class="header">
+          <h3>Room {{ selectedRoom.id | roomNumber }}</h3>
+          <button class="close-btn" (click)="closeRoomDetails()">✖</button>
+        </div>
+        <div class="details">
+          <div>
+            <img
+              *ngIf="selectedRoom?.imageUrl?.length; else checkRoomType"
+              [src]="selectedRoomType?.imageUrl?.[0]"
+            />
+            <ng-template #checkRoomType>
+              <img
+                *ngIf="selectedRoomType?.imageUrl?.length; else noImage"
+                [src]="selectedRoomType?.imageUrl?.[0]"
+              />
+            </ng-template>
+            <ng-template #noImage>
+              <img src="/assets/no-image.png" alt="No Image Available" />
+            </ng-template>
+          </div>
+
+          <p><strong>Building:</strong> {{ selectedBuilding }}</p>
+          <p><strong>Floor:</strong> {{ selectedFloor }}</p>
+          <p>
+            <strong>Status:</strong>
+            <span class="status">
+              <span
+                class="status-dot"
+                [style.background-color]="statusColors[selectedRoom.status]"
+              ></span>
+              {{ selectedRoom.status }}
+            </span>
+          </p>
+          <p><strong>Features:</strong> {{ selectedRoomType?.features }}</p>
+          <p><strong>Type:</strong> {{ selectedRoomType?.name }}</p>
+          <p><strong>Kitchen:</strong> {{ selectedRoomType?.kitchens }}</p>
+          <p><strong>Bathroom:</strong> {{ selectedRoomType?.bathrooms }}</p>
+          <p>
+            <strong>Livingroom:</strong> {{ selectedRoomType?.livingRooms }}
+          </p>
+          <p>
+            <strong>Size:</strong> {{ selectedRoomType?.size | sizeFormat }}
+          </p>
+          <p><strong>Price:</strong> {{ selectedRoom.price | currency }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="status-legend">
+    <div class="legend-item" *ngFor="let entry of statusEntries">
+      <div class="legend-color" [style.background-color]="entry[1]"></div>
+      <span>{{ entry[0] }}</span>
+    </div>
+  </div>
+
+  <!-- Debug information (hidden in production) -->
+  <div class="debug-info" *ngIf="false">
+    <p>Building: {{ selectedBuilding }}</p>
+    <p>Floor: {{ selectedFloor }}</p>
+    <p>Rooms loaded: {{ rooms.length }}</p>
+  </div>
+</div>

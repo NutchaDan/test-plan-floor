@@ -1,0 +1,34 @@
+$successColour: #46fcb4;
+
+:host {
+  &.ng-touched, &.ng-drity {
+    &.ng-invalid {
+      svg {
+        .wall, .seat {
+          fill: red
+        }
+      }
+    }
+  }
+
+  svg {
+    margin: 0 0 0 0;
+    width: 40%;
+    height: 100%;
+
+    .wall {
+      fill: #2b3a4d;
+      transition: all 250ms;
+    }
+
+    .seat {
+      fill: #2b3a4d;
+      cursor: pointer;
+      transition: all 250ms;
+
+      &.selected {
+        fill: $successColour
+      }
+    }
+  }
+}

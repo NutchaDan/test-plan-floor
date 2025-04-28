@@ -1,0 +1,99 @@
+export interface RoomType {
+  id: string;
+  name: string;
+  kitchens: number;
+  livingRooms: number;
+  bathrooms: number;
+  bedrooms: number;
+  size: number;
+  features: string[];
+  starterPrice: number;
+  details: string;
+  imageUrl: string[] | null;
+  virtualTourUrl?: string; // For 360 virtual tour
+}
+
+export const roomTypes: RoomType[] = [
+  {
+    id: 'type-a',
+    name: 'Type A',
+    kitchens: 1,
+    livingRooms: 1,
+    bathrooms: 1,
+    bedrooms: 1,
+    size: 28.12,
+    features: ['Balcony', 'Air conditioning'],
+    starterPrice: 9000,
+    details: 'Comfortable room with modern amenities...',
+    imageUrl: [
+      'https://scontent.fhdy2-1.fna.fbcdn.net/v/t39.30808-6/488157864_976652474606018_9200711323649949097_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=5CQpZbM_gWIQ7kNvwFbdd51&_nc_oc=Admxo0xzJkxdRm1eyVvs2lUp0BfEEwUUdOG31APSMy10AGFB69UAZxUZA3HmgkXOcmM&_nc_zt=23&_nc_ht=scontent.fhdy2-1.fna&_nc_gid=oj-Y3FM69fYW9iq_6mADsw&oh=00_AfFy8NZvvir-LOKCgOoUc67iYIMVCa5V1uhged1_-kwnzQ&oe=6814B1A3',
+    ],
+    virtualTourUrl: 'https://bestboobe.github.io/test-360-2/',
+  },
+  {
+    id: 'type-b',
+    name: 'Type B',
+    kitchens: 1,
+    livingRooms: 2,
+    bathrooms: 2,
+    bedrooms: 4,
+    size: 40.35,
+    features: [
+      'Balcony',
+      'Air conditioning',
+      'Smart home system',
+      'Chair Accessible',
+    ],
+    starterPrice: 10500,
+    details: 'Luxurious room with additional space...',
+    imageUrl: [
+      'https://scontent.fhdy2-1.fna.fbcdn.net/v/t39.30808-6/481073450_951968773741055_823365728913203855_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=qcgNJ7I8itoQ7kNvwG-6TsV&_nc_oc=AdkgGuePcPfSx9kqR9xvhNGuA3lyA4qa46d7v_c0qsiBLZe4kzCEAeQ_5UvM8hhARIY&_nc_zt=23&_nc_ht=scontent.fhdy2-1.fna&_nc_gid=gRwOZzFHcvaLv_X0WuczcQ&oh=00_AfHFtnyZQGshfiQFS79G-0wH75Jz3lPUf7Dven50tPQgoA&oe=6814DC2A',
+    ],
+    virtualTourUrl: 'https://bestboobe.github.io/test-360-2/',
+  },
+  {
+    id: 'type-c',
+    name: 'Type C',
+    kitchens: 1,
+    livingRooms: 2,
+    bathrooms: 2,
+    bedrooms: 3,
+    size: 30.35,
+    features: [
+      'Balcony',
+      'Air conditioning',
+      'Smart home system',
+      'Electricity',
+      'Heating',
+    ],
+    starterPrice: 10500,
+    details: 'Luxurious room with additional space...',
+    imageUrl: [
+      'https://scontent.fhdy2-1.fna.fbcdn.net/v/t39.30808-6/476146420_935676398703626_6612727024357698623_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=W0xaAMDlBiYQ7kNvwHYLWID&_nc_oc=Adn7bOE_JXCiOBBGc_q5dGfMZGyrN-Ux_7Vw6j2YsntRlq1he7DMyY5E6Db7Laq-fn0&_nc_zt=23&_nc_ht=scontent.fhdy2-1.fna&_nc_gid=M2Am2e4bC0iHTQJdbxsf7A&oh=00_AfE3iyqS8tZYeqNxsA0735V4mPxXv08TYHs0fh_wvdddhQ&oe=6814DD4F',
+    ],
+    virtualTourUrl: 'https://bestboobe.github.io/test-360-2/',
+  },
+  {
+    id: 'type-d',
+    name: 'Type D',
+    kitchens: 1,
+    livingRooms: 2,
+    bathrooms: 4,
+    bedrooms: 4,
+    size: 60.0,
+    features: [
+      'Fireplace',
+      'Air conditioning',
+      'Smart home system',
+      'Washer and dryer',
+      'Equipped Kitchen',
+      'Laundry',
+    ],
+    starterPrice: 10500,
+    details: 'Luxurious room with additional space...',
+    imageUrl: [
+      'https://scontent.fhdy2-1.fna.fbcdn.net/v/t39.30808-6/475288337_929606432643956_7669109513983139533_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=LoLgpVJP9XYQ7kNvwHIl9z5&_nc_oc=Adnhf0PXyVYyG1Tofu3oh-_MkhLDYAXrGFKWTJh-sxl3yrG1ng1O51shCyFKY2H1XoU&_nc_zt=23&_nc_ht=scontent.fhdy2-1.fna&_nc_gid=QF0aXo7kqPI6TuxLEOKB1Q&oh=00_AfFdQutytDtpu7MkTpZpQCX9jKlgf9VIr22LPakcNtyEFg&oe=6814BFE7',
+    ],
+    virtualTourUrl: 'https://bestboobe.github.io/test-360-2/',
+  },
+];

@@ -1,0 +1,178 @@
+<div class="comparison-page">
+  <div class="header">
+    <h1>Room Type Comparison</h1>
+    <p>
+      Compare up to {{ maxSelection }} room types to find your perfect match
+    </p>
+  </div>
+
+  <!-- Room slots in a row -->
+  <div class="room-slots">
+    <div
+      *ngFor="let typeId of selectedTypes; let i = index"
+      class="room-slot"
+      [class.filled]="typeId !== null"
+      (click)="openRoomSelectionDialog(i)"
+    >
+      <div *ngIf="typeId !== null" class="selected-room">
+        <div class="room-header">
+          <h3>{{ getTypeName(typeId) }}</h3>
+          <button class="remove-btn" (click)="removeRoomType(i, $event)">
+            ×
+          </button>
+        </div>
+        <img
+          [src]="getRoomType(typeId)?.imageUrl || 'assets/default-room.jpg'"
+          [alt]="getTypeName(typeId)"
+          class="room-image"
+        />
+        <div class="room-details">
+          <p *ngIf="getRoomType(typeId)?.size" class="size">
+            {{ getRoomType(typeId)?.size }} sqm
+          </p>
+          <p *ngIf="getRoomType(typeId)?.starterPrice" class="price">
+            {{
+              getRoomType(typeId)?.starterPrice
+                | currency : "THB" : "symbol" : "1.0-0"
+            }}
+          </p>
+        </div>
+      </div>
+
+      <div *ngIf="typeId === null" class="empty-slot">
+        <div class="plus-icon">+</div>
+        <p>Select Room Type</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comparison tables -->
+  <div *ngIf="comparisonData" class="comparison-section">
+    <h2>Room Features Comparison</h2>
+
+    <!-- Basic specs comparison table -->
+    <div class="comparison-table">
+      <h3>Room Specifications</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Specification</th>
+            <th *ngFor="let typeId of selectedTypes">
+              {{ typeId ? getTypeName(typeId) : "" }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let spec of comparisonData.baseSpecs">
+            <td>{{ spec.name }}</td>
+            <td *ngFor="let typeId of selectedTypes">
+              <ng-container *ngIf="typeId">
+                <ng-container [ngSwitch]="spec.name">
+                  <span *ngSwitchCase="'Price'">
+                    {{
+                      spec.values[typeId]
+                        | currency : "THB" : "symbol" : "1.0-0"
+                    }}
+                  </span>
+                  <span *ngSwitchCase="'Size'">
+                    {{ spec.values[typeId] | sizeFormat }}
+                  </span>
+                  <span *ngSwitchDefault>
+                    {{ spec.values[typeId] }}
+                  </span>
+                </ng-container>
+              </ng-container>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Features comparison table with checkmarks -->
+    <div class="comparison-table features-table">
+      <h3>Special Features</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th *ngFor="let typeId of selectedTypes">
+              {{ typeId ? getTypeName(typeId) : "" }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let feature of comparisonData.features">
+            <td>{{ feature.name }}</td>
+            <td *ngFor="let typeId of selectedTypes" class="feature-cell">
+              <span
+                *ngIf="typeId && feature.values[typeId]"
+                class="feature-check"
+              >
+                ✓
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Detail room type -->
+    <div class="comparison-table features-table">
+      <table>
+        <thead>
+          <tr></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td *ngFor="let typeId of selectedTypes" class="feature-cell">
+              <button [routerLink]="['/room-detail/type', typeId]">
+                View Room Type
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Room selection dialog -->
+<div *ngIf="showSelectionDialog" class="room-selection-dialog">
+  <div class="dialog-content">
+    <div class="dialog-header">
+      <h2>Select Room Type</h2>
+      <button class="close-btn" (click)="closeDialog()">×</button>
+    </div>
+
+    <div class="room-grid">
+      <div
+        *ngFor="let type of allRoomTypes"
+        class="room-card"
+        [class.disabled]="
+          isAlreadySelected(type.id) &&
+          type.id !== selectedTypes[currentSlotIndex]
+        "
+        (click)="selectRoomType(type.id)"
+      >
+        <img
+          [src]="
+            type.imageUrl && type.imageUrl.length > 0
+              ? type.imageUrl[0]
+              : 'assets/default-room.jpg'
+          "
+          [alt]="type.name"
+          class="room-image"
+        />
+
+        <div class="room-info">
+          <h3>{{ type.name }}</h3>
+          <p *ngIf="type.size" class="size">{{ type.size }} sqm</p>
+          <p *ngIf="type.starterPrice" class="price">
+            {{ type.starterPrice | currency : "THB" : "symbol" : "1.0-0" }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

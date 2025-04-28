@@ -1,0 +1,38 @@
+<div class="container">
+  <h1>Building Floor Plan Viewer</h1>
+
+  <!-- Building selection -->
+  <div class="selector-container">
+    <h2>Select Building</h2>
+    <div class="button-group">
+      <button
+        *ngFor="let building of buildings"
+        [class.selected]="selectedBuilding?.id === building.id"
+        (click)="selectBuilding(building)">
+        {{ building.name }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Floor selection -->
+  <div class="selector-container" *ngIf="selectedBuilding">
+    <h2>Select Floor</h2>
+    <div class="button-group">
+      <button
+        *ngFor="let floorNumber of selectedBuilding.floors"
+        [class.selected]="selectedFloor === floorNumber"
+        (click)="selectFloor(floorNumber)">
+        Floor {{ floorNumber }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Floor layout display -->
+  <div class="floor-layout-container" *ngIf="selectedBuilding && selectedFloor !== null">
+    <h3>{{ selectedBuilding.name }} - Floor {{ selectedFloor }}</h3>
+    <app-floor-layout
+      [selectedBuilding]="selectedBuilding.id"
+      [selectedFloor]="selectedFloor">
+    </app-floor-layout>
+  </div>
+</div>

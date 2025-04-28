@@ -1,0 +1,80 @@
+<svg
+  width="2351"
+  height="1938"
+  viewBox="0 0 2351 1938"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+
+  <g class="wall" fill="#CCCACA">
+    <path fill-rule="evenodd" clip-rule="evenodd"
+      d="M1423 0H0V1938H2351V0H2193V10H1423V0ZM2308 35H2193V25H1423V35H43V1902H2308V35Z" />
+  </g>
+
+  <g
+    class="seat"
+    [class.selected]="isSelected('seat-1')"
+    (click)="select('seat-1')"
+    fill="#CCCACA"
+  >
+    <rect x="199" y="1287" width="501" height="315" rx="20" />
+    <rect x="244" y="1072" width="160" height="160" rx="20" />
+    <rect x="475" y="1072" width="160" height="160" rx="20" />
+    <rect x="244" y="1657" width="160" height="160" rx="20" />
+    <rect x="475" y="1657" width="160" height="160" rx="20" />
+  </g>
+
+  <g
+    class="seat"
+    [class.selected]="isSelected('seat-2')"
+    (click)="select('seat-2')"
+    fill="#CCCACA"
+  >
+    <rect x="925" y="1287" width="501" height="315" rx="20" />
+    <rect x="970" y="1072" width="160" height="160" rx="20" />
+    <rect x="1201" y="1072" width="160" height="160" rx="20" />
+    <rect x="970" y="1657" width="160" height="160" rx="20" />
+    <rect x="1201" y="1657" width="160" height="160" rx="20" />
+  </g>
+
+  <g
+    class="seat"
+    [class.selected]="isSelected('seat-3')"
+    (click)="select('seat-3')"
+    fill="#CCCACA"
+  >
+    <rect x="199" y="336" width="501" height="315" rx="20" />
+    <rect x="244" y="121" width="160" height="160" rx="20" />
+    <rect x="475" y="121" width="160" height="160" rx="20" />
+    <rect x="244" y="706" width="160" height="160" rx="20" />
+    <rect x="475" y="706" width="160" height="160" rx="20" />
+  </g>
+
+  <g
+    class="seat"
+    [class.selected]="isSelected('seat-4')"
+    (click)="select('seat-4')"
+    fill="#CCCACA"
+  >
+    <rect x="925" y="336" width="501" height="315" rx="20" />
+    <rect x="970" y="121" width="160" height="160" rx="20" />
+    <rect x="1201" y="121" width="160" height="160" rx="20" />
+    <rect x="970" y="706" width="160" height="160" rx="20" />
+    <rect x="1201" y="706" width="160" height="160" rx="20" />
+  </g>
+
+  <g
+    class="seat"
+    [class.selected]="isSelected('seat-5')"
+    (click)="select('seat-5')"
+    fill="#CCCACA"
+  >
+    <rect x="1652" y="1287" width="501" height="315" rx="20" />
+    <rect x="1697" y="1072" width="160" height="160" rx="20" />
+    <rect x="1928" y="1072" width="160" height="160" rx="20" />
+    <rect x="1697" y="1657" width="160" height="160" rx="20" />
+    <rect x="1928" y="1657" width="160" height="160" rx="20" />
+  </g>
+
+
+</svg>

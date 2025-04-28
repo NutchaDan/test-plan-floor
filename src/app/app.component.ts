@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'reserve-seat';
+
+  // public reservierungForm: FormGroup = new FormGroup( {
+  //   name: new FormControl('', [
+  //     Validators.required
+  //   ], []),
+  //   lastname: new FormControl('', [
+  //     Validators.required
+  //   ], []),
+  //   seat: new FormControl('', [
+  //     Validators.required
+  //   ], []),
+  // })
+
 }
