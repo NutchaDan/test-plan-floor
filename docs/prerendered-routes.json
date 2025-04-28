@@ -1,0 +1,7 @@
+{
+  "routes": [
+    "/compare-rooms",
+    "/plan-building",
+    "/room-detail"
+  ]
+}
