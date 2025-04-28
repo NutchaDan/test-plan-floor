@@ -153,7 +153,7 @@ body {
 .svg-container {
   flex: 1;
   padding: 1rem;
-  overflow: auto; // Makes the SVG container scrollable if content overflows
+  overflow: auto;
 
   svg {
     width: 100%;
